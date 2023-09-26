@@ -75,6 +75,15 @@ body {
   }
 }
 
+.error {
+  color: red;
+  margin-bottom: 20px;
+}
+.error-text {
+  font-size: 20px;
+  margin: 35px auto;
+}
+
 .cart {
   &__top {
     display: flex;
@@ -131,7 +140,7 @@ body {
     }
   }
 
-  .content__items  {
+  .content__items {
     display: flex;
     flex-direction: column;
   }
