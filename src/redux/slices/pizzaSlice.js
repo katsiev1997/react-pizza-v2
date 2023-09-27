@@ -31,7 +31,6 @@ const pizzaSlice = createSlice({
       state.items = [];
     },
     [fetchPizzas.fulfilled]: (state, action) => {
-      console.log(action, "fulfilled");
       state.items = action.payload;
       state.status = "success";
     },
