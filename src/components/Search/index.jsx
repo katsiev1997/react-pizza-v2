@@ -23,9 +23,9 @@ const Search = () => {
     updateSearchValue(e.target.value);
   };
   return (
-    <div className={styles.root}>
+  <div className={styles.root}>
       <svg
-        className={styles.icon}
+    className={styles.icon}
         enableBackground="new 0 0 32 32"
         id="Glyph"
         version="1.1"
