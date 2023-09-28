@@ -9,14 +9,10 @@ import NotFound from "./pages/NotFound";
 import FullPizza from "./pages/FullPizza";
 import MainLayout from "./layouts/MainLayout";
 
-export const SearchContext = React.createContext();
-
 
 
 function App() {
-  const [searchValue, setSearchValue] = React.useState("");
   return (
-    <SearchContext.Provider value={{ searchValue, setSearchValue }}>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route path="" element={<Home />} />
@@ -25,7 +21,6 @@ function App() {
           <Route path="pizza/:id" element={<FullPizza />} />
         </Route>
       </Routes>
-    </SearchContext.Provider>
   );
 }
 
