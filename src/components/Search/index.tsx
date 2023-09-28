@@ -4,22 +4,26 @@ import styles from "./Search.module.scss";
 import { useDispatch } from "react-redux";
 import { setSearchValue } from "../../redux/slices/filterSlice";
 
-const Search = () => {
+const Search: React.FC = () => {
   const [value, setValue] = React.useState("");
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const dispatch = useDispatch();
 
-  const updateSearchValue = React.useCallback(() => {
-    debounce((str) => setSearchValue(str), 500);
-  }, []);
+  const updateSearchValue = React.useCallback(
+    (e: string) => {
+      debounce((str: string) => dispatch(setSearchValue(str)), 500);
+    },
+    [dispatch]
+  );
 
   const onClickClear = () => {
     dispatch(setSearchValue(value));
     setValue("");
-    inputRef.current.focus();
+    // if (inputRef.current) inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
-  const onChangeInput = (e) => {
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value);
     updateSearchValue(e.target.value);
   };

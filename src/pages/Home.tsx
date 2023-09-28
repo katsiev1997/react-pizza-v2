@@ -8,20 +8,20 @@ import Pagination from "../components/Pagination";
 import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
 import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
-function Home() {
+const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } = useSelector(
-    (state) => state.filter
+    (state: any) => state.filter
   );
-  const { items, status } = useSelector((state) => state.pizza);
+  const { items, status } = useSelector((state: any) => state.pizza);
   const sortType = sort.sortProperty;
 
   const dispatch = useDispatch();
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
-  const onChangePage = (id) => {
-    dispatch(setCurrentPage(id));
+  const onChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
   React.useEffect(() => {
     const getPizzas = async () => {
@@ -31,6 +31,7 @@ function Home() {
       const search = searchValue ? `&search=${searchValue}` : "";
 
       dispatch(
+        // @ts-ignore
         fetchPizzas({
           sortBy,
           order,
@@ -45,7 +46,7 @@ function Home() {
     getPizzas();
   }, [categoryId, sortType, searchValue, currentPage, dispatch]);
 
-  const pizzas = items.map((obj) => (
+  const pizzas = items.map((obj: any) => (
 
       <PizzaBlock key={obj.id} {...obj} />
   ));
