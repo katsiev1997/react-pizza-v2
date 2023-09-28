@@ -2,8 +2,13 @@ import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const FullPizza = () => {
-  const [pizza, setPizza] = React.useState({});
+const FullPizza: React.FC = () => {
+  type pizzaObj = {
+    imageUrl: string;
+    title: string;
+    price: number;
+  };
+  const [pizza, setPizza] = React.useState<pizzaObj>();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -15,8 +20,8 @@ const FullPizza = () => {
         );
         setPizza(data);
       } catch (error) {
-        alert('Произошла ошибка');
-        navigate('/')
+        alert("Произошла ошибка");
+        navigate("/");
         console.log(error);
       }
     };
@@ -24,12 +29,12 @@ const FullPizza = () => {
   }, [id, navigate]);
 
   if (!pizza) {
-    return "Загрузка ..."
+    return <>"Загрузка ..."</>;
   }
 
   return (
     <div className="container">
-      <img src={pizza.imageUrl} alt=""/>
+      <img src={pizza.imageUrl} alt="" />
       <h2>{pizza.title}</h2>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores

@@ -5,20 +5,17 @@ import Sort from "../components/Sort";
 import PizzaBlock from "../components/PizzaBlock";
 import Skeleton from "../components/PizzaBlock/Skeleton";
 import Pagination from "../components/Pagination";
-import { SearchContext } from "../App";
 import { setCategoryId, setCurrentPage } from "../redux/slices/filterSlice";
 import { fetchPizzas } from "../redux/slices/pizzaSlice";
 
 function Home() {
-  const { categoryId, sort, currentPage } = useSelector(
+  const { categoryId, sort, currentPage, searchValue } = useSelector(
     (state) => state.filter
   );
   const { items, status } = useSelector((state) => state.pizza);
   const sortType = sort.sortProperty;
 
   const dispatch = useDispatch();
-
-  const { searchValue } = React.useContext(SearchContext);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
