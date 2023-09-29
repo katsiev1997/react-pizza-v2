@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addItem, removeItem, clearItem } from "../redux/slices/cartSlice";
+import { addItem, removeItem, clearItem } from "../redux/cart/slice";
 
 type CartItemProps = {
   id: string;
@@ -14,29 +14,16 @@ type CartItemProps = {
 
 const CartItem: React.FC<CartItemProps> = (obj) => {
   const dispatch = useDispatch();
-  const {
-    title,
-    type,
-    size,
-    price,
-    count,
-    imageUrl,
-  } = obj;
+  const { title, type, size, price, count, imageUrl } = obj;
 
   const onClickPlus = () => {
-    dispatch(
-      addItem(obj)
-    );
+    dispatch(addItem(obj));
   };
   const onClickMinus = () => {
-    dispatch(
-      removeItem(obj)
-    );
+    dispatch(removeItem(obj));
   };
   const onCLickClearItem = () => {
-    dispatch(
-      clearItem(obj)
-    );
+    dispatch(clearItem(obj));
   };
 
   const sizeName = (size: number) => {

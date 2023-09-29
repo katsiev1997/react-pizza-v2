@@ -1,10 +1,11 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { SortItem, setSort } from "../redux/slices/filterSlice";
+import { setSort } from "../redux/filter/slice";
+import { SortItem } from "../redux/filter/types";
 
 type SortPopupProps = {
   value: SortItem;
-}
+};
 
 const sortList: SortItem[] = [
   { name: "популярности (убыв)", sortProperty: "rating" },
@@ -15,7 +16,7 @@ const sortList: SortItem[] = [
   { name: "алфавиту (возр)", sortProperty: "-title" },
 ];
 
-const Sort: React.FC<SortPopupProps> = React.memo(({value}) => {
+const Sort: React.FC<SortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
   const [open, setOpen] = React.useState(false);

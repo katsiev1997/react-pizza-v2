@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { CartItem, addItem } from "../../redux/slices/cartSlice";
+import { addItem } from "../../redux/cart/slice";
 import { Link } from "react-router-dom";
+import { CartItem } from "../../redux/cart/types";
 
 const typeNames = ["тонкое", "традиционное"];
 
@@ -35,7 +36,7 @@ const PizzaBlock: React.FC<PizzaBlockProps> = ({
       imageUrl,
       type: typeNames[activeType],
       size: activeSize,
-      count: 0
+      count: 0,
     };
     dispatch(addItem(item));
   };
