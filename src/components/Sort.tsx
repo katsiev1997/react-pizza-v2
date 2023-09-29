@@ -1,11 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectSort, setSort } from "../redux/slices/filterSlice";
-
-type SortItem = {
-  name: string,
-  sortProperty: string,
-}
+import { SortItem, selectSort, setSort } from "../redux/slices/filterSlice";
 
 
 const sortList: SortItem[] = [
@@ -66,7 +61,7 @@ function Sort() {
               <li
                 key={i}
                 onClick={() => onClickListItem(obj)}
-                className={sort === obj.name ? "active" : ""}
+                className={sort.sortProperty === obj.name ? "active" : ""}
               >
                 {obj.name}
               </li>

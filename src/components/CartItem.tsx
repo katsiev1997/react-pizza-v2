@@ -12,42 +12,30 @@ type CartItemProps = {
   imageUrl: string;
 };
 
-const CartItem: React.FC<CartItemProps> = ({
-  id,
-  title,
-  type,
-  size,
-  price,
-  count,
-  imageUrl,
-}) => {
+const CartItem: React.FC<CartItemProps> = (obj) => {
   const dispatch = useDispatch();
+  const {
+    title,
+    type,
+    size,
+    price,
+    count,
+    imageUrl,
+  } = obj;
 
   const onClickPlus = () => {
     dispatch(
-      addItem({
-        id,
-        size,
-        type,
-      })
+      addItem(obj)
     );
   };
   const onClickMinus = () => {
     dispatch(
-      removeItem({
-        id,
-        size,
-        type,
-      })
+      removeItem(obj)
     );
   };
   const onCLickClearItem = () => {
     dispatch(
-      clearItem({
-        id,
-        size,
-        type,
-      })
+      clearItem(obj)
     );
   };
 
