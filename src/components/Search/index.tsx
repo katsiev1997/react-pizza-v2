@@ -10,9 +10,7 @@ const Search: React.FC = () => {
   const dispatch = useDispatch();
 
   const updateSearchValue = React.useCallback(
-    (e: string) => {
-      debounce((str: string) => dispatch(setSearchValue(str)), 500);
-    },
+    debounce((str: string) => dispatch(setSearchValue(str)), 500),
     [dispatch]
   );
 

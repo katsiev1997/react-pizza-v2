@@ -18,9 +18,10 @@ const Home: React.FC = () => {
 
   const dispatch = useAppDispatch();
 
-  const onChangeCategory = (id: number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, [dispatch]);
+
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
   };
@@ -46,18 +47,16 @@ const Home: React.FC = () => {
     getPizzas();
   }, [categoryId, sortType, searchValue, currentPage, dispatch]);
 
-  const pizzas = items.map((obj: any) => (
-
-      <PizzaBlock key={obj.id} {...obj} />
-  ));
+  const pizzas = items.map((obj: any) => <PizzaBlock key={obj.id} {...obj} />);
   const skeletons = [...new Array(6)].map((_, index) => (
     <Skeleton key={index} />
   ));
+
   return (
     <div className="container">
       <div className="content__top">
         <Categories value={categoryId} onChangeCategory={onChangeCategory} />
-        <Sort />
+        <Sort value={sort}/>
       </div>
       <h2 className="content__title">Все пиццы</h2>
       {status === "error" ? (
@@ -76,6 +75,6 @@ const Home: React.FC = () => {
       <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
-}
+};
 
 export default Home;

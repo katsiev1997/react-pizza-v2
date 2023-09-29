@@ -190,6 +190,14 @@ body {
       width: 13%;
 
       &-minus {
+        &:disabled {
+          cursor: default;
+          svg path:first-of-type {
+            fill: #787878;
+          }
+          background: rgb(172, 172, 172);
+          opacity: 0.5;
+        }
         svg {
           path:first-of-type {
             display: none;
