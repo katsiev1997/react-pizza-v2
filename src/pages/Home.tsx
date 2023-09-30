@@ -1,23 +1,24 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import Categories from "../components/Categories";
-import Sort from "../components/Sort";
-import PizzaBlock from "../components/PizzaBlock";
-import Skeleton from "../components/PizzaBlock/Skeleton";
-import Pagination from "../components/Pagination";
+
 import { setCategoryId, setCurrentPage } from "../redux/filter/slice";
 import { fetchPizzas } from "../redux/pizza/slice";
 import { useAppDispatch } from "../redux/store";
 import { selectPizzaData } from "../redux/pizza/selectors";
 
+import { Categories, Sort, PizzaBlock, Skeleton, Pagination } from "../components";
+
+
+
 const Home: React.FC = () => {
   const { categoryId, sort, currentPage, searchValue } = useSelector(
     (state: any) => state.filter
   );
+  const dispatch = useAppDispatch();
   const { items, status } = useSelector(selectPizzaData);
+
   const sortType = sort.sortProperty;
 
-  const dispatch = useAppDispatch();
 
   const onChangeCategory = React.useCallback(
     (id: number) => {
